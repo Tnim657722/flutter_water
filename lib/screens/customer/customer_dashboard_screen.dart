@@ -22,6 +22,12 @@ class CustomerDashboardScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.background,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => context.push('/customer/orders/create'),
+        backgroundColor: AppColors.accent,
+        icon: const Icon(Icons.add_shopping_cart, color: Colors.white),
+        label: Text('สั่งน้ำดื่ม', style: GoogleFonts.kanit(fontWeight: FontWeight.w700, color: Colors.white)),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -202,17 +208,27 @@ class CustomerDashboardScreen extends StatelessWidget {
                             Text('ส่งตรงถึงหน้าบ้าน\nทุกวันโดยไม่มีวันหยุด',
                                 style: GoogleFonts.kanit(color: Colors.white70, fontSize: 13)),
                             const SizedBox(height: 12),
-                            ElevatedButton(
-                              onPressed: () => context.go('/customer/orders'),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.accent,
-                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                minimumSize: Size.zero,
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                              ),
-                              child: Text('ดูออเดอร์ของฉัน',
-                                  style: GoogleFonts.kanit(fontSize: 13, fontWeight: FontWeight.w600)),
+                            Row(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () => context.push('/customer/orders/create'),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.accent,
+                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                    minimumSize: Size.zero,
+                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                  ),
+                                  child: Text('สั่งน้ำดื่ม',
+                                      style: GoogleFonts.kanit(fontSize: 13, fontWeight: FontWeight.w600)),
+                                ),
+                                const SizedBox(width: 8),
+                                TextButton(
+                                  onPressed: () => context.go('/customer/orders'),
+                                  child: Text('ออเดอร์ของฉัน',
+                                      style: GoogleFonts.kanit(fontSize: 13, color: Colors.white70)),
+                                ),
+                              ],
                             ),
                           ],
                         ),

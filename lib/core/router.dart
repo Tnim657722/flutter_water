@@ -15,6 +15,7 @@ import '../screens/customer/customer_dashboard_screen.dart';
 import '../screens/customer/my_orders_screen.dart';
 import '../screens/customer/order_detail_customer_screen.dart';
 import '../screens/customer/delivery_history_screen.dart';
+import '../screens/customer/create_order_customer_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _adminShellKey = GlobalKey<NavigatorState>();
@@ -104,6 +105,11 @@ GoRouter createRouter(AppProvider provider) {
         builder: (ctx, state) => OrderDetailAdminScreen(
           orderId: state.pathParameters['id']!,
         ),
+      ),
+      GoRoute(
+        path: '/customer/orders/create',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (ctx, state) => const CreateOrderCustomerScreen(),
       ),
       GoRoute(
         path: '/customer/orders/:id',
